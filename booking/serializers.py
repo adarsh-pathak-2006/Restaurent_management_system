@@ -5,7 +5,7 @@ from authentication.serializers import UserGetSerializer
 class TableGetSerializer(ModelSerializer):
     class Meta:
         model=Table
-        fields=['table_id', 'is_avaliable']
+        fields=['id', 'is_avaliable']
 
 class TableSerializer(ModelSerializer):
     class Meta:

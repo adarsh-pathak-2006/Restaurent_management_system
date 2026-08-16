@@ -15,16 +15,16 @@ class CustomTokenRefresh(TokenRefreshView):
     throttle_classes=[TokenRefreshThrottle]
 
 class RegisterAPI(APIView):
+    permission_classes = []
     def post(self, request):
         serial=RegisterSerializer(data=request.data)
         if serial.is_valid():
             username=serial.validated_data['username']
             email=serial.validated_data['email']
-            role=serial.validated_data['role']
             password=serial.validated_data['password']
 
             if User.objects.filter(Q(username=username) | Q(email=email)).exists():
                 return Response({'message':'username or email already exists'}, status=400)
-            User.objects.create_user(username=username, email=email, role=role, password=password)
+            User.objects.create_user(username=username, email=email, role='CUSTOMER', password=password)
             return Response({'message':'user registration successfull'}, status=201)
         return Response(serial.errors, status=400)

@@ -13,7 +13,7 @@ class Menu(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.item_name} of {self.restaurent.name}"
+        return self.item_name
 
 
 class Order(models.Model):
@@ -28,5 +28,5 @@ class Order(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.items.item_name} on table id {self.table.table_id}"
+        return f"{self.items.item_name} on table id {self.table.id}"
 

@@ -8,7 +8,7 @@ class Table(models.Model):
     is_avaliable=models.BooleanField(default=True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Reservation(models.Model):
@@ -20,9 +20,9 @@ class Reservation(models.Model):
         constraints=[models.UniqueConstraint(fields=['table', 'user'], name='each_table_per_reservation')]
 
     def save(self, *args, **kwargs):
-        self.table.is_avaliable=False
+        self.table.is_avaliable = False
+        self.table.save()
         return super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.table.id} -- {self.id}"
-
