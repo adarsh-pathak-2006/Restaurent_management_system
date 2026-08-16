@@ -18,7 +18,7 @@ class ReservationListAPI(ListAPIView):
     serializer_class=ReservationSerializer
 
 
-class ReservationCreateSerializer(APIView):
+class ReservationCreateAPI(APIView):
     def post(self, request, pk):
         serial=ReservationSerializer(data=request.data)
         if serial.is_valid():
@@ -29,6 +29,6 @@ class ReservationCreateSerializer(APIView):
             return Response({'message':'table is already booked'}, status=400)
         return Response(serial.errors, status=400)
 
-class ReservationDetailSerializer(RetrieveDestroyAPIView):
+class ReservationDetailAPI(RetrieveDestroyAPIView):
     serializer_class=ReservationSerializer
     queryset=Reservation.objects.all()
