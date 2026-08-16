@@ -6,7 +6,7 @@ from booking.serializers import TableGetSerializer
 class MenuGetSerializer(ModelSerializer):
     class Meta:
         model=Menu
-        fields=['item_name', 'item_price', 'is_avaliable']
+        fields=['id', 'item_name', 'item_price', 'is_avaliable']
 
 class MenuSerializer(ModelSerializer):
     class Meta:
