@@ -1,5 +1,4 @@
 from rest_framework.views import APIView
-from django.conf import settings
 from .serializers import RegisterSerializer
 from django.db.models import Q
 from rest_framework.response import Response
