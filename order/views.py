@@ -49,6 +49,8 @@ class OrderCreateAPI(APIView):
             table_data=get_object_or_404(Table, id=pk)
             menu_data=get_object_or_404(Menu, id=ck)
             serial.save(items=menu_data, table=table_data)
+            menu_data.stock=menu_data.stock-1
+            menu_data.save()
             return Response(serial.data, status=201)
         return Response(serial.errors, status=400)
 
