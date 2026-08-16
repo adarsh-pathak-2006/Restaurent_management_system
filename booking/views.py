@@ -30,8 +30,9 @@ class TableDetail(RetrieveUpdateDestroyAPIView):
 class ReservationListAPI(ListAPIView):
     throttle_classes=[GeneralThrottle]
     permission_classes=[IsAuthenticated]
-    queryset=Reservation.objects.all()
     serializer_class=ReservationSerializer
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
 
 
 class ReservationCreateAPI(APIView):
@@ -54,4 +55,5 @@ class ReservationDetailAPI(RetrieveDestroyAPIView):
             return [IsAuthenticated()]
         return [IsCustomer()]
     serializer_class=ReservationSerializer
-    queryset=Reservation.objects.all()
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
