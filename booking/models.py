@@ -15,6 +15,13 @@ class Reservation(models.Model):
     table=models.OneToOneField(Table, on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        constraints=[models.UniqueConstraint(fields=['table', 'user'], name='each_table_per_reservation')]
+
+    def save(self, *args, **kwargs):
+        self.table.is_avaliable==False
+        return super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.table.table_id} -- {self.id}"
 
