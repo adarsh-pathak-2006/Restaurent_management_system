@@ -1,9 +1,7 @@
 from django.db import models
-from authentication.models import Restaurent
 from booking.models import Table
 
 class Menu(models.Model):
-    restaurent=models.ForeignKey(Restaurent, on_delete=models.CASCADE)
     item_name=models.CharField(max_length=200)
     item_price=models.PositiveIntegerField()
     stock=models.PositiveIntegerField()

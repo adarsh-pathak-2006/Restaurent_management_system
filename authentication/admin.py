@@ -1,6 +1,6 @@
 from django.contrib import admin
-from authentication.models import User, Restaurent
+from authentication.models import User
 
 admin.site.register(User)
-admin.site.register(Restaurent)
+
 
