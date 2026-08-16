@@ -4,8 +4,16 @@ from .serializers import RegisterSerializer
 from django.db.models import Q
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from config.throttling import TokenObtainThrottle, TokenRefreshThrottle
 
 User=get_user_model()
+
+class CustomTokenObtain(TokenObtainPairView):
+    throttle_classes=[TokenObtainThrottle]
+
+class CustomTokenRefresh(TokenRefreshView):
+    throttle_classes=[TokenRefreshThrottle]
 
 class RegisterAPI(APIView):
     def post(self, request):

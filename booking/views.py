@@ -6,14 +6,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from config.permissions import IsCustomer, IsManager
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from config.throttling import TokenObtainThrottle, TokenRefreshThrottle, GeneralThrottle
+from config.throttling import GeneralThrottle
 
-class CustomTokenObtain(TokenObtainPairView):
-    throttle_classes=[TokenObtainThrottle]
-
-class CustomTokenRefresh(TokenRefreshView):
-    throttle_classes=[TokenRefreshThrottle]
 
 class AllTables(ListCreateAPIView):
     throttle_classes=[GeneralThrottle]

@@ -1,9 +1,9 @@
 from django.urls import path
 from authentication.views import RegisterAPI
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from authentication.views import CustomTokenObtain, CustomTokenRefresh
 
 urlpatterns = [
     path('register/', RegisterAPI.as_view(), name='register'),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_view'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/', CustomTokenObtain.as_view(), name='token_obtain_view'),
+    path('token/refresh/', CustomTokenRefresh.as_view(), name='token_refresh'),
 ]
